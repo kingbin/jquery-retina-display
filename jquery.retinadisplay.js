@@ -13,7 +13,8 @@
 		/* Init plugin */
 		init : function( options ) {
 			return this.each(function(){
-				var isRetina = (!!navigator.userAgent.match(/iPhone|iPad/i) && window.devicePixelRatio==2);
+				//var isRetina = (!!navigator.userAgent.match(/iPhone|iPad/i) && window.devicePixelRatio==2);
+				var isRetina = (window.devicePixelRatio>=1.5);
 				var resSrc = $(this).attr('data-res-src');
 				var exists = false;
 				var obj = $(this);
