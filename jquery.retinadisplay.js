@@ -8,17 +8,17 @@
  * https://github.com/gavroche/jquery-retina-display
  */
 (function($) {
-	
+
 	var methods = {
 		/* Init plugin */
 		init : function( options ) {
 			return this.each(function(){
 				//var isRetina = (!!navigator.userAgent.match(/iPhone|iPad/i) && window.devicePixelRatio==2);
-				var isRetina = (window.devicePixelRatio>=1.5);
+				//var isRetina = (window.devicePixelRatio>=1.5);
 				var resSrc = $(this).attr('data-res-src');
 				var exists = false;
 				var obj = $(this);
-				
+
 				// Check if image is valid
 				var loadImage = function (src, callback) {
 					var r = new XMLHttpRequest();
@@ -35,19 +35,17 @@
 					};
 					r.send(null);
 				};
-				
+
 				// Load image
-				if (isRetina) {
-					loadImage(resSrc, function(){
-						if (exists) {
-							obj.attr('src', resSrc);
-						}
-					});
-				}
+        loadImage(resSrc, function(){
+          if (exists) {
+            obj.attr('src', resSrc);
+          }
+        });
 			});
 		}
 	};
-	
+
 	$.fn.retinaDisplay = function( method ) {
 		// Method calling logic
 		if (methods[method]) {
