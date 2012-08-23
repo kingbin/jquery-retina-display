@@ -18,7 +18,7 @@ To not load the script for non-retina displays, you can use it with [Modernizr](
 
 ```javascript
 Modernizr.addTest('retina', function () {
-	return (!!navigator.userAgent.match(/iPhone|iPad/i) && window.devicePixelRatio==2);
+	return (window.devicePixelRatio>=1.5);
 });
 
 Modernizr.load([
