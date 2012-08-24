@@ -24,27 +24,71 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script><script>/*<![CDATA[*/window.jQuery||document.write('<script src="http://chrisblazek.me/wp-content/themes/chrisblazek/js/libs/jquery-1.6.2.min.js"><\/script>')/*]]>*/</script> <!--[if lt IE 7 ]><script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script><script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script><![endif]-->
     <script type="text/javascript">
-      Modernizr.addTest('retina', function () {
 
-//        var rules = [],
-//        result = false,
-//        i = 0;
-//        rules.push("screen and (-webkit-min-device-pixel-ratio:1) and (min-width: 2000px)");
-//        rules.push("screen and (min-device-width: 320px) and (max-device-width: 480px)");
-//        rules.push("screen and (-webkit-pixel-ratio: 2) and (max-device-width: 640px) and (orientation: landscape)");
-//        rules.push("screen and (-webkit-pixel-ratio: 2) and (max-device-width: 360px) and (orientation: portrait)");
-//        rules.push("screen and (-webkit-pixel-ratio: 1.5) and (max-device-width: 640px) and (orientation: landscape)");
-//        rules.push("screen and (-o-pixel-ratio: 3/2) and (max-device-width: 640px) and (orientation: landscape)");
-//        for (i; i < rules.length; i++) {
-//          if (Modernizr.mq(rules[i])) {
-//            result = true;
-//            break;
-//          }
-//        }
-//        return true;//return result;
-//
-          return (window.devicePixelRatio>=1.5);
+      Modernizr.addTest('smallscreen', function() {
+          var rules = [],
+          result = false,
+          i = 0;
+          rules.push("screen and (min-width: 320px) and (max-width: 480px)");
+          rules.push("screen and (-webkit-pixel-ratio: 2) and (max-width: 640px) and (orientation: landscape)");
+          rules.push("screen and (-webkit-pixel-ratio: 2) and (max-width: 360px) and (orientation: portrait)");
+          rules.push("screen and (-webkit-pixel-ratio: 1.5) and (max-width: 640px) and (orientation: landscape)");
+          rules.push("screen and (-o-pixel-ratio: 3/2) and (max-width: 640px) and (orientation: landscape)");
+          for (i; i < rules.length; i++) {
+              if (Modernizr.mq(rules[i])) {
+                  result = true;
+                  break;
+              }
+          }
+          return result;
       });
+
+
+      Modernizr.addTest('smallscreen_device', function() {
+          var rules = [],
+          result = false,
+          i = 0;
+          rules.push("screen and (min-device-width: 320px) and (max-device-width: 480px)");
+          rules.push("screen and (-webkit-pixel-ratio: 2) and (max-device-width: 640px) and (orientation: landscape)");
+          rules.push("screen and (-webkit-pixel-ratio: 2) and (max-device-width: 360px) and (orientation: portrait)");
+          rules.push("screen and (-webkit-pixel-ratio: 1.5) and (max-device-width: 640px) and (orientation: landscape)");
+          rules.push("screen and (-o-pixel-ratio: 3/2) and (max-device-width: 640px) and (orientation: landscape)");
+          for (i; i < rules.length; i++) {
+              if (Modernizr.mq(rules[i])) {
+                  result = true;
+                  break;
+              }
+          }
+          return result;
+      });
+
+
+      Modernizr.addTest('retina', function () {
+        var rules = [],
+        result = false,
+        i = 0;
+        rules.push("screen and (min--moz-device-pixel-ratio: 1) and (max-width: 2000px)");
+
+        rules.push("screen and (-webkit-min-device-pixel-ratio:1) and (min-width: 2000px)");
+        rules.push("screen and (-webkit-min-device-pixel-ratio:1.5)");
+        rules.push("screen and (o-min-device-pixel-ratio:3/2)");
+        rules.push("screen and (min--moz-device-pixel-ratio:1.5)");
+        rules.push("screen and (min-device-pixel-ratio:1.5)");
+        for (i; i < rules.length; i++) {
+          if (Modernizr.mq(rules[i])) {
+            result = true;
+            break;
+          }
+        }
+        return result;
+//        return (window.devicePixelRatio>=1.5);
+      });
+
+
+
+//      alert("smallscreen: " + Modernizr.smallscreen);
+//      alert("smallscreen_device: " + Modernizr.smallscreen_device);
+      alert("retina: " + Modernizr.retina);
 
       Modernizr.load([
           {
@@ -59,8 +103,6 @@
       ]);
 
       jQuery(document).ready(function($){
-            var pr = Modernizr.mq('only all and (max-width: 2000px) and (min--moz-device-pixel-ratio: 1)');
-            alert(pr);  //returns true. 
           });
     </script>
   </body>
