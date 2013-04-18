@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Jquery-retina-display : Swap images to higher resolution images on retina displays" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Jquery-retina-display</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/kingbin/jquery-retina-display">View on GitHub</a>
+
+          <h1 id="project_title">Jquery-retina-display</h1>
+          <h2 id="project_tagline">Swap images to higher resolution images on retina displays</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/kingbin/jquery-retina-display/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/kingbin/jquery-retina-display/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>jQuery Retina Display</h1>
+
+<p>Swap images to higher resolution images on retina displays based off modernizer tests. I have stripped the tests in javascript so the developer can decide what conditions they want to load the higher res images. ie connection speed, network caps, future browser detection support, etc.</p>
+
+<h2>Example Usage</h2>
+
+<div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"image.jpg"</span> <span class="na">alt=</span><span class="s">""</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"600"</span> <span class="na">data-res-src=</span><span class="s">"image_2x.jpg"</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+<h2>Use it with Modernizr</h2>
+
+<p>Use this script with <a href="https://github.com/Modernizr/Modernizr">Modernizr</a> and set your own test cases.</p>
+
+<div class="highlight"><pre>
+      <span class="nx">Modernizr</span><span class="p">.</span><span class="nx">addTest</span><span class="p">(</span><span class="s1">'retina'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">rules</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="nx">result</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nx">rules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"screen and (min--moz-device-pixel-ratio: 1) and (max-width: 2000px)"</span><span class="p">);</span>
+
+        <span class="nx">rules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"screen and (-webkit-min-device-pixel-ratio:1) and (max-width: 2000px)"</span><span class="p">);</span>
+        <span class="nx">rules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"screen and (-webkit-min-device-pixel-ratio:1.5)"</span><span class="p">);</span>
+        <span class="nx">rules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"screen and (o-min-device-pixel-ratio:3/2)"</span><span class="p">);</span>
+        <span class="nx">rules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"screen and (min--moz-device-pixel-ratio:1.5)"</span><span class="p">);</span>
+        <span class="nx">rules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"screen and (min-device-pixel-ratio:1.5)"</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">rules</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">mq</span><span class="p">(</span><span class="nx">rules</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="nx">result</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+          <span class="c1">//return (window.devicePixelRatio&gt;=1.5);</span>
+      <span class="p">});</span>
+
+      <span class="nx">Modernizr</span><span class="p">.</span><span class="nx">load</span><span class="p">([</span>
+          <span class="p">{</span>
+              <span class="nx">test</span> <span class="o">:</span> <span class="nx">Modernizr</span><span class="p">.</span><span class="nx">retina</span><span class="p">,</span>
+              <span class="nx">yep</span> <span class="o">:</span> <span class="s1">'js/libs/jquery-retina-display/jquery.retinadisplay.min.js'</span><span class="p">,</span>
+              <span class="nx">complete</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                  <span class="k">if</span><span class="p">(</span><span class="nx">Modernizr</span><span class="p">.</span><span class="nx">retina</span><span class="p">)</span> <span class="p">{</span>
+                      <span class="nx">$</span><span class="p">(</span><span class="s1">'img[data-res-src]'</span><span class="p">).</span><span class="nx">retinaDisplay</span><span class="p">();</span>
+                  <span class="p">}</span>
+              <span class="p">}</span>
+          <span class="p">}</span>
+      <span class="p">]);</span>
+</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Jquery-retina-display maintained by <a href="https://github.com/kingbin">kingbin</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
