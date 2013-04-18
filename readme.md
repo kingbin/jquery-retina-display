@@ -1,4 +1,4 @@
-# jQuery Retina Display [![Build Status](https://travis-ci.org/kingbin/jquery-retina-display.png?branch=master)](http://travis-ci.org/kingbin/jquery-retina-display)
+# jQuery Retina Display
 
 Swap images to higher resolution images on retina displays based off modernizer tests. I have stripped the tests in javascript so the developer can decide what conditions they want to load the higher res images. ie connection speed, network caps, future browser detection support, etc.
 
